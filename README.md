@@ -33,13 +33,20 @@ class AkamaiProperty():
     def activateProduction(self,version,notes,email_list,peer_review_email,customer_email)
 ```
 
-## Install Dependencies
+## Install Dependencies If you are using source code.
 ```
 $ pip install -r requirements.txt
 ```
+
+### Install pip package available
+```
+$ pip install akamaiproperty
+```
+
 ## Instantiate the object.
 ```
 >>> from akamaiproperty import AkamaiProperty
+>>> myProperty = AkamaiProperty("/Users/apadmana/.edgerc","test_bulkseach_update_1","<accountSwitchKey>")
 >>> myProperty = AkamaiProperty("/Users/apadmana/.edgerc","test_bulkseach_update_1")
 ```
 
