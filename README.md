@@ -11,7 +11,61 @@ In order to use this configuration, you need to:
 ## Overview
 The advantage of Akamai Property class is application developers need not know about the PAPI calls and their usage. Application developers can just focus on getting their work done on Property Manager configs programmatically using the objects of AkamaiProperty.
 
-##Install Dependencies
+## Class Definition
 ```
-$ pip pip install -r requirements.txt
+class AkamaiProperty():
+    def __init__(self,edgercLocation, name, accountSwitchKey=None):
+        self.name = name
+        self.contractId = ''
+        self.groupId = ''
+        self.propertyId = ''
+        self.stagingVersion = 0
+        self.productionVersion = 0
+        self.accountSwitchKey = ''
+
+    def printPropertyInfo(self)
+    def getStagingVersion(self)
+    def getProductionVersion(self)
+    def getRuleTree(self,version)
+    def updateRuleTree(self,version,jsondata)
+    def createVersion(self,baseVersion)
+    def activateStaging(self,version,notes,email_list)
+    def activateProduction(self,version,notes,email_list,peer_review_email,customer_email)
+```
+
+## Install Dependencies
+```
+$ pip install -r requirements.txt
+```
+## Instantiate the object.
+```
+>>> from akamaiproperty import AkamaiProperty
+>>> myProperty = AkamaiProperty("/Users/apadmana/.edgerc","test_bulkseach_update_1")
+```
+
+## Print Basic Information
+```
+>>> myProperty.printPropertyInfo()
+Property Name: test_bulkseach_update_1
+Contract Id: ctr_C-1IE2OHM
+Group Id: grp_163363
+Active Staging Version: 18
+Active Production Version: 18
+```
+## Create a new version
+```
+>>> myProperty.createVersion(18)
+'78'
+```
+
+## Get rule Tree
+```
+>>>myProperty.getRuleTree(18)
+{'accountId': 'act_B-C-1IE2OH8', 'contractId': 'ctr_C-1IE2OHM', 'groupId': 'grp_163363', 'propertyId': 'prp_605086', 'propertyName': 'test_bulkseach_update_1', 'propertyVersion': 18, 'etag': 'd0d28a6b71e665144955f7f7e1ff214933d119d7', 'rules':.....}
+```
+
+## Activate the config
+```
+>>>myProperty.activateStaging(18,"testing activation",["apadmana@akamai.com"])
+True
 ```
