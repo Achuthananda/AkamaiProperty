@@ -11,27 +11,6 @@ In order to use this configuration, you need to:
 ## Overview
 The advantage of Akamai Property class is application developers need not know about the PAPI calls and their usage. Application developers can just focus on getting their work done on Property Manager configs programmatically using the objects of AkamaiProperty.
 
-## Class Definition
-```
-class AkamaiProperty():
-    def __init__(self,edgercLocation, name, accountSwitchKey=None):
-        self.name = name
-        self.contractId = ''
-        self.groupId = ''
-        self.propertyId = ''
-        self.stagingVersion = 0
-        self.productionVersion = 0
-        self.accountSwitchKey = ''
-
-    def printPropertyInfo(self)
-    def getStagingVersion(self)
-    def getProductionVersion(self)
-    def getRuleTree(self,version)
-    def updateRuleTree(self,version,jsondata)
-    def createVersion(self,baseVersion)
-    def activateStaging(self,version,notes,email_list)
-    def activateProduction(self,version,notes,email_list,peer_review_email,customer_email)
-```
 
 ## Install Dependencies If you are using source code.
 ```
@@ -75,4 +54,26 @@ Active Production Version: 18
 ```
 >>>myProperty.activateStaging(18,"testing activation",["apadmana@akamai.com"])
 True
+```
+
+## Class Definition
+```
+class AkamaiProperty():
+    def __init__(self,edgercLocation, name, accountSwitchKey=None):
+        self.name = name
+        self.contractId = ''
+        self.groupId = ''
+        self.propertyId = ''
+        self.stagingVersion = 0
+        self.productionVersion = 0
+        self.accountSwitchKey = ''
+
+    def printPropertyInfo(self)
+    def getStagingVersion(self)
+    def getProductionVersion(self)
+    def getRuleTree(self,version)
+    def updateRuleTree(self,version,jsondata)
+    def createVersion(self,baseVersion)
+    def activateStaging(self,version,notes,email_list)
+    def activateProduction(self,version,notes,email_list,peer_review_email,customer_email)
 ```
