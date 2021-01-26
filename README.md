@@ -33,9 +33,10 @@ $ pip install akamaiproperty
 ```
 >>> myProperty.printPropertyInfo()
 Property Name: test_bulkseach_update_1
+Property Id: prp_605086
 Contract Id: ctr_C-1IE2OHM
 Group Id: grp_163363
-Active Staging Version: 18
+Active Staging Version: 96
 Active Production Version: 18
 ```
 ## Create a new version
@@ -50,30 +51,42 @@ Active Production Version: 18
 {'accountId': 'act_B-C-1IE2OH8', 'contractId': 'ctr_C-1IE2OHM', 'groupId': 'grp_163363', 'propertyId': 'prp_605086', 'propertyName': 'test_bulkseach_update_1', 'propertyVersion': 18, 'etag': 'd0d28a6b71e665144955f7f7e1ff214933d119d7', 'rules':.....}
 ```
 
-## Activate the config
+## Activate the config on Staging
 ```
 >>>myProperty.activateStaging(18,"testing activation",["apadmana@akamai.com"])
 True
 ```
 
-## Class Definition
+## Activate the config on Production
 ```
-class AkamaiProperty():
-    def __init__(self,edgercLocation, name, accountSwitchKey=None):
-        self.name = name
-        self.contractId = ''
-        self.groupId = ''
-        self.propertyId = ''
-        self.stagingVersion = 0
-        self.productionVersion = 0
-        self.accountSwitchKey = ''
+>>>myProperty.activateProduction(18,"testing activation",["apadmana@akamai.com"])
+True
+```
+## Get the version Active on Staging
+```
+>>>myProperty.getStagingVersion()
+20
+```
 
-    def printPropertyInfo(self)
-    def getStagingVersion(self)
-    def getProductionVersion(self)
-    def getRuleTree(self,version)
-    def updateRuleTree(self,version,jsondata)
-    def createVersion(self,baseVersion)
-    def activateStaging(self,version,notes,email_list)
-    def activateProduction(self,version,notes,email_list,peer_review_email,customer_email)
+## Get the version Active on Production
+```
+>>>myProperty.getProductionVersion()
+18
+```
+
+## Get the HostNames Present in the Config
+```
+>>>myProperty.getHostnames(12)
+['achuth-lab.edgesuite-staging.net', 'achuth-lab.edgesuite.net']
+```
+
+## Get the Available Behaviours  in the Config
+```
+>>>myProperty.getAvailableFeatures(12)
+['advanced', 'akamaizer', 'akamaizerTag', 'allHttpInCacheHierarchy', 'allowCloudletsOrigins', 'allowDelete', 'allowOptions', 'allowPatch', 'allowPost', 'allowPut', 'allowTransferEncoding', 'apiPrioritization', 'autoDomainValidation', 'baseDirectory', 'breakConnection', 'brotli', 'cacheError', 'cacheId', 'cacheKeyIgnoreCase', 'cacheKeyQueryParams', 'cacheKeyRewrite', 'cachePost', 'cacheRedirect', 'cacheTagVisible', 'caching', 'centralAuthorization', 'chaseRedirects', 'cloudInterconnects', 'constructResponse', 'corsSupport', 'cpCode', 'customBehavior', 'datastream', 'denyAccess', 'deviceCharacteristicCacheId', 'deviceCharacteristicHeader', 'dnsAsyncRefresh', 'dnsPrefresh', 'downstreamCache', 'edgeConnect', 'edgeImageConversion', 'edgeOriginAuthorization', 'edgeRedirector', 'edgeScape', 'edgeSideIncludes', 'enhancedAkamaiProtocol', 'failAction', 'failoverBotManagerFeatureCompatibility', 'firstPartyMarketing', 'forwardRewrite', 'globalRequestNumber', 'graphqlCaching', 'gzipResponse', 'healthDetection', 'http2', 'httpStrictTransportSecurity', 'imOverride', 'imageManager', 'instant', 'largeFileOptimization', 'mPulse', 'modifyIncomingRequestHeader', 'modifyIncomingResponseHeader', 'modifyOutgoingRequestHeader', 'modifyOutgoingResponseHeader', 'origin', 'originCharacteristics', 'persistentClientConnection', 'persistentConnection', 'personallyIdentifiableInformation', 'prefetch', 'prefetchable', 'prefreshCache', 'readTimeout', 'realUserMonitoring', 'redirect', 'redirectplus', 'refererChecking', 'removeQueryParameter', 'removeVary', 'report', 'requestControl', 'responseCode', 'responseCookie', 'returnCacheStatus', 'rewriteUrl', 'rumCustom', 'savePostDcaProcessing', 'scheduleInvalidation', 'setVariable', 'simulateErrorCode', 'siteShield', 'sureRoute', 'tcpOptimization', 'tieredDistribution', 'timeout', 'validateEntityTag', 'verifyTokenAuthorization', 'visitorPrioritization', 'watermarkUrl', 'webApplicationFirewall', 'webdav']
+```
+## Get the Used Behaviours  in the Config
+```
+>>>myProperty.getUsedBehaviors(12)
+['origin', 'cpCode', 'caching', 'tieredDistribution', 'prefetch', 'allowPost', 'report', 'mPulse', 'gzipResponse', 'prefetchable', 'downstreamCache', 'removeVary', 'allowTransferEncoding', 'http2', 'deviceCharacteristicCacheId', 'deviceCharacteristicHeader', 'cacheKeyQueryParams', 'edgeRedirector', 'advanced', 'edgeSideIncludes', 'rewriteUrl', 'setVariable', 'forwardRewrite', 'modifyIncomingResponseHeader', 'cacheTagVisible', 'cacheId']
 ```

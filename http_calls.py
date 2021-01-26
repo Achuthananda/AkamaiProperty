@@ -134,6 +134,7 @@ class EdgeGridHttpCaller():
         headers = {'content-type': 'application/json'}
         path = endpoint
 
+        print(parameters)
         endpoint_result = self.session.put(parse.urljoin(self.baseurl,path), data=body, headers=headers, params=parameters)
         status = endpoint_result.status_code
         if self.verbose:
